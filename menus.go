@@ -16,7 +16,16 @@ func showMainMenu() {
 	fmt.Printf("\nSelect your choice: ")
 }
 
-func genReportMenu(){
+// iterates over the map and prints list in unordered
+func printWholeList() {
+	fmt.Println("\nShopping List Contents: ")
+	for k, item := range shoppingList {
+		fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v\n", category[shoppingList[k].category], k, item.quantity, item.unitCost)
+	}
+	fmt.Println(" ")
+}
+
+func genReportMenu() {
 	fmt.Println("Generate Report")
 	fmt.Println("1. Total Cost of each category")
 	fmt.Println("2. List of items by category")

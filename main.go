@@ -1,16 +1,15 @@
 package main
 
-import (
-	"fmt"
-)
-
-
-
 func main() {
-	//insert code here
-	
+
 	showMainMenu()
 	userMenuSel()
 
-	fmt.Printf("%v %T", userSelectionValue, userSelectionValue)
+	switch userSelectionValue {
+	case 1:
+		printWholeList()
+		backToMain()
+	}
+
+	// fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v", category[shoppingList["Cake"].category], )
 }

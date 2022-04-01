@@ -25,10 +25,32 @@ func printWholeList() {
 	fmt.Println(" ")
 }
 
-func genReportMenu() {
-	fmt.Println("Generate Report")
+func showGenReportMenu() {
+	fmt.Println("\nGenerate Report")
 	fmt.Println("1. Total Cost of each category")
 	fmt.Println("2. List of items by category")
 	fmt.Println("3. Main Menu")
-	fmt.Println("Choose your report or exit to Main Menu:")
+	fmt.Printf("\nChoose your report or exit to Main Menu: ")
+}
+
+func totalCostCategory() {
+	var total0 float64
+	var total1 float64
+	var total2 float64
+
+	for _, item := range shoppingList {
+		if item.category == 0 {
+			total0 += (float64(item.quantity) * item.unitCost)
+		} else if item.category == 1 {
+			total1 += (float64(item.quantity) * item.unitCost)
+		} else {
+			total2 += (float64(item.quantity) * item.unitCost)
+		}
+	}
+
+	fmt.Println("\nTotal cost by Category.")
+	fmt.Println("Household cost :  ", total0)
+	fmt.Println("Food cost :  ", total1)
+	fmt.Println("Drinks cost :  ", total2,)
+	fmt.Println("")
 }

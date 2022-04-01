@@ -4,7 +4,7 @@ import "fmt"
 
 //printing and storing of different menus
 func showMainMenu() {
-	fmt.Println("Shopping List Application")
+	fmt.Println("\nShopping List Application")
 	fmt.Println("=========================")
 	fmt.Println("1. View entire shopping list.")
 	fmt.Println("2. Generate shopping List Report")
@@ -13,7 +13,7 @@ func showMainMenu() {
 	fmt.Println("5. Delete Item.")
 	fmt.Println("6. Print Current Data")
 	fmt.Println("7. Add New Category Name")
-	fmt.Println("Select your choice: ")
+	fmt.Printf("\nSelect your choice: ")
 }
 
 func genReportMenu(){

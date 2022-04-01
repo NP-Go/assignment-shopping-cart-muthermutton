@@ -1,7 +1,6 @@
 package main
 
-
-type itemInfo struct{
+type itemInfo struct {
 	category int
 	quantity int
 	unitCost float64
@@ -9,4 +8,4 @@ type itemInfo struct{
 
 var category = []string{"Household", "Food", "Drinks"}
 
-var shoppingList = map[string]itemInfo {}
+var shoppingList map[string]itemInfo

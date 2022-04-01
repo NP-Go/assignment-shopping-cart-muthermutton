@@ -1,14 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-var userSelection string
+
 
 func main() {
 	//insert code here
-
+	
 	showMainMenu()
-	// fmt.Scanln(&userSelection)
- 
-  fmt.Println(category[0])
+	userMenuSel()
+
+	fmt.Printf("%v %T", userSelectionValue, userSelectionValue)
 }

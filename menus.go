@@ -68,6 +68,37 @@ func listByCategory() {
 }
 
 func addItem() {
+	var newItemName string
+	var newCategory	string
+	var newCategoryIndex int
+	var newQuantity int
+	var newUnitCost float64
+	var invalidUserInput bool = true
+
 	fmt.Println("What is the name of your Item?")
-	userStingValidation()
+	newItemName = userStringInput()
+
+	//user input validation check for valid category
+	for ok := true; ok ; ok = invalidUserInput {
+		fmt.Println("What category does it belong to?")
+		newCategory = userStringInput()
+		for catId, category := range categories {
+			if newCategory == category {
+				invalidUserInput = false
+				newCategoryIndex = catId
+			}
+		}
+		if invalidUserInput {
+			println("No such category")	
+		}
+	}
+
+	fmt.Println("How many units are there?")
+	newQuantity = userIntInput()
+
+	fmt.Println("How much does it cost per unit?")
+	newUnitCost = float64(userIntInput())
+
+	shoppingList[newItemName] = itemInfo{category: newCategoryIndex, quantity: newQuantity, unitCost: newUnitCost}
+
 }

@@ -9,9 +9,10 @@ import (
 var userSelection string
 var userSelectionValue int
 
-func userMenuSel() {
+func userIntInput() int{
 	fmt.Scanln(&userSelection)
 	userSelectionValue, _ = strconv.Atoi(userSelection)
+	return userSelectionValue
 }
 
 func backToMain() {
@@ -28,7 +29,8 @@ func backToMain() {
 	}
 }
 
-func userStingValidation(){
+func userStringInput() string{
 	fmt.Scanln(&userSelection)
-	userSelection = strings.Title(strings.ToLower(userSelection))
+	userSelectionCapital := strings.Title(strings.ToLower(userSelection))
+	return userSelectionCapital
 }

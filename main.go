@@ -3,7 +3,7 @@ package main
 func main() {
 
 	showMainMenu()
-	userMenuSel()
+	userIntInput()
 
 	switch userSelectionValue {
 	case 1:
@@ -11,7 +11,7 @@ func main() {
 		backToMain()
 	case 2:
 		showGenReportMenu()
-		userMenuSel()
+		userIntInput()
 
 		switch userSelectionValue {
 		case 1:
@@ -24,7 +24,8 @@ func main() {
 			main()
 		}
 	case 3:
-		
+		addItem()
+		main()
 	}
 
 	// fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v", category[shoppingList["Cake"].category], )

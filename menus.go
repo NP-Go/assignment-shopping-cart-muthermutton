@@ -34,25 +34,17 @@ func showGenReportMenu() {
 }
 
 func totalCostCategory() {
-	var total0 float64
-	var total1 float64
-	var total2 float64
-
-	for _, item := range shoppingList {
-		if item.category == 0 {
-			total0 += (float64(item.quantity) * item.unitCost)
-		} else if item.category == 1 {
-			total1 += (float64(item.quantity) * item.unitCost)
-		} else {
-			total2 += (float64(item.quantity) * item.unitCost)
-		}
-	}
-
 	fmt.Println("\nTotal cost by Category.")
-	fmt.Println("Household cost :  ", total0)
-	fmt.Println("Food cost :  ", total1)
-	fmt.Println("Drinks cost :  ", total2)
-	fmt.Println("")
+	for catId, category := range categories {
+		var total float64
+		for _, item := range shoppingList {
+			if item.category == catId {
+				total += (float64(item.quantity) * item.unitCost)
+			}
+		}
+		fmt.Printf("%v cost : %v\n", category, total)
+	}
+	fmt.Println(" ")
 }
 
 func listByCategory() {
@@ -102,3 +94,31 @@ func addItem() {
 	shoppingList[newItemName] = itemInfo{category: newCategoryIndex, quantity: newQuantity, unitCost: newUnitCost}
 
 }
+
+// func modifyItem() {
+// 	var newItemName string
+// 	// var newCategory string
+// 	// var newQuantity int
+// 	// var newUnitCost float64
+// 	var invalidUserInput bool = true
+// 	var stringInputValue string
+
+// 	//user input validation check for valid category
+// 	for ok := true; ok ; ok = invalidUserInput {
+// 		fmt.Println("\nWhich item would you wish to modify?")
+// 		x := userStringInput()
+// 		for itemName, itemInfo := range shoppingList {
+// 			if x == itemName {
+// 				fmt.Printf("\nCurrent Item Name: %v - Category: %v - Quantity: %v - Unit Cost %v\n", itemName, itemInfo.category, itemInfo.quantity, itemInfo.unitCost)
+// 				invalidUserInput = false
+// 			}
+// 		}
+// 		if invalidUserInput {
+// 			println("No such Item in shopping list")	
+// 		}
+// 	}
+
+// 	fmt.Println("Enter new Item Name. Enter for no change.")
+// 	stringinputvalue = userStringInput()
+// 	if stringinputvalue == ''
+// }

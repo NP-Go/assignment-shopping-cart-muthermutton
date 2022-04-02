@@ -2,6 +2,8 @@ package main
 
 func main() {
 
+	// modifyItem()
+
 	showMainMenu()
 	userIntInput()
 
@@ -26,6 +28,8 @@ func main() {
 	case 3:
 		addItem()
 		main()
+	case 4:
+
 	}
 
 	// fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v", category[shoppingList["Cake"].category], )

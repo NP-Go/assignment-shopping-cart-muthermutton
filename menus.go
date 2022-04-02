@@ -61,7 +61,7 @@ func listByCategory() {
 
 func addItem() {
 	var newItemName string
-	var newCategory	string
+	var newCategory string
 	var newCategoryIndex int
 	var newQuantity int
 	var newUnitCost float64
@@ -71,7 +71,7 @@ func addItem() {
 	newItemName = userStringInput()
 
 	//user input validation check for valid category
-	for ok := true; ok ; ok = invalidUserInput {
+	for ok := true; ok; ok = invalidUserInput {
 		fmt.Println("What category does it belong to?")
 		newCategory = userStringInput()
 		for catId, category := range categories {
@@ -81,7 +81,7 @@ func addItem() {
 			}
 		}
 		if invalidUserInput {
-			println("No such category")	
+			println("No such category")
 		}
 	}
 
@@ -95,30 +95,34 @@ func addItem() {
 
 }
 
-// func modifyItem() {
-// 	var newItemName string
-// 	// var newCategory string
-// 	// var newQuantity int
-// 	// var newUnitCost float64
-// 	var invalidUserInput bool = true
-// 	var stringInputValue string
+func modifyItem() {
+	var newItemName string
+	// var newCategory string
+	// var newQuantity int
+	// var newUnitCost float64
+	var invalidUserInput bool = true
+	var stringInputValue string
 
-// 	//user input validation check for valid category
-// 	for ok := true; ok ; ok = invalidUserInput {
-// 		fmt.Println("\nWhich item would you wish to modify?")
-// 		x := userStringInput()
-// 		for itemName, itemInfo := range shoppingList {
-// 			if x == itemName {
-// 				fmt.Printf("\nCurrent Item Name: %v - Category: %v - Quantity: %v - Unit Cost %v\n", itemName, itemInfo.category, itemInfo.quantity, itemInfo.unitCost)
-// 				invalidUserInput = false
-// 			}
-// 		}
-// 		if invalidUserInput {
-// 			println("No such Item in shopping list")	
-// 		}
-// 	}
+	//user input validation check for valid category
+	for ok := true; ok; ok = invalidUserInput {
+		fmt.Println("\nWhich item would you wish to modify?")
+		x := userStringInput()
+		for itemName, itemInfo := range shoppingList {
+			if x == itemName {
+				fmt.Printf("\nCurrent Item Name: %v - Category: %v - Quantity: %v - Unit Cost %v\n", itemName, itemInfo.category, itemInfo.quantity, itemInfo.unitCost)
+				invalidUserInput = false
+			}
+		}
+		if invalidUserInput {
+			println("No such Item in shopping list")
+		}
+	}
 
-// 	fmt.Println("Enter new Item Name. Enter for no change.")
-// 	stringinputvalue = userStringInput()
-// 	if stringinputvalue == ''
-// }
+	fmt.Println("Enter new Item Name. Enter for no change.")
+	stringInputValue = userStringInput()
+	if stringinputvalue == " " {
+
+	} else {
+
+	}
+}

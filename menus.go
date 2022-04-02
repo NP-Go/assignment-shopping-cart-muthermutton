@@ -19,8 +19,8 @@ func showMainMenu() {
 // iterates over the map and prints list in unordered
 func printWholeList() {
 	fmt.Println("\nShopping List Contents: ")
-	for k, item := range shoppingList {
-		fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v\n", category[shoppingList[k].category], k, item.quantity, item.unitCost)
+	for itemName, item := range shoppingList {
+		fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v\n", categories[item.category], itemName, item.quantity, item.unitCost)
 	}
 	fmt.Println(" ")
 }
@@ -51,6 +51,23 @@ func totalCostCategory() {
 	fmt.Println("\nTotal cost by Category.")
 	fmt.Println("Household cost :  ", total0)
 	fmt.Println("Food cost :  ", total1)
-	fmt.Println("Drinks cost :  ", total2,)
+	fmt.Println("Drinks cost :  ", total2)
 	fmt.Println("")
+}
+
+func listByCategory() {
+	fmt.Println(" ")
+	for catId, category := range categories {
+		for itemName, item := range shoppingList {
+			if item.category == catId {
+				fmt.Printf("Category: %v - Item: %v, Quantity: %v, Cost: %v\n", category, itemName, item.quantity, item.unitCost)
+			}
+		}
+	}
+	fmt.Println(" ")
+}
+
+func addItem() {
+	fmt.Println("What is the name of your Item?")
+	userStingValidation()
 }

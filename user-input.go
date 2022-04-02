@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 var userSelection string
@@ -22,7 +23,12 @@ func backToMain() {
 	}else if userSelection == "n" {
 		backToMain()
 	}else {
-		println("Not a valid selection.")
+		fmt.Println("Not a valid selection.")
 		backToMain()
 	}
+}
+
+func userStingValidation(){
+	fmt.Scanln(&userSelection)
+	userSelection = strings.Title(strings.ToLower(userSelection))
 }

@@ -6,7 +6,7 @@ type itemInfo struct {
 	unitCost float64
 }
 
-var category = []string{"Household", "Food", "Drinks"}
+var categories = []string{"Household", "Food", "Drinks"}
 var shoppingList map[string]itemInfo
 
 func init() {

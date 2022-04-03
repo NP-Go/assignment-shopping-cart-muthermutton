@@ -33,6 +33,12 @@ func main() {
 	case 5:
 		deleteItem()
 		backToMain()
+	case 6:
+		printCurrentData()
+		backToMain()
+	case 7:
+		addNewCategory()
+		backToMain()
 	}
 	
 

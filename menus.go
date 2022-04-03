@@ -178,19 +178,46 @@ func modifyItem() {
 
 func deleteItem() {
 	for {
-		fmt.Println("Delete Item.")
+		fmt.Println("Delete Item.\n")
 		itemNameDelete := userStringInput()
 
 		_, exist := shoppingList[itemNameDelete]
 
-		if exist{
+		if exist {
 			delete(shoppingList, itemNameDelete)
-			fmt.Println("Item ", itemNameDelete, "has been deleted.")
+			fmt.Println("\nItem ", itemNameDelete, "has been deleted.")
 			break
 		} else {
-			fmt.Println("Item does not exist. Please enter valid item.")
+			fmt.Println("\nItem does not exist. Please enter valid item.")
 		}
 	}
-
 }
 
+func printCurrentData() {
+	fmt.Println("\nPrint Current Data.")
+	for itemName, itemInfo := range shoppingList {
+		fmt.Printf("%v - %v\n", itemName, itemInfo)
+	}
+	fmt.Println("")
+}
+
+func addNewCategory() {
+
+	fmt.Println("Add New Category Name.")
+	var categoryExists = false
+	for {
+		fmt.Println("What is the New Category Name to add?")
+		newCategory := userStringInput()
+		for catId, category := range categories {
+			if newCategory == category {
+				fmt.Println("Category", category, "already exist at index", catId)
+				categoryExists = true
+			}
+		}
+		if !categoryExists {
+			categories = append(categories, newCategory)
+			fmt.Println("New Category:", newCategory, "added at index", len(categories)-1)
+			break
+		}
+	}
+}

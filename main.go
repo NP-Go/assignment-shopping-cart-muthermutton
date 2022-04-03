@@ -1,10 +1,15 @@
 package main
 
+import (
+	userInput "assignment-shopping-cart-muthermutton/userInput"
+	"fmt"
+)
+
 func main() {
 
-
 	showMainMenu()
-	userIntInput()
+	userSelectionValue := userInput.UserIntInput("\nselect your choice: ")
+	
 
 	switch userSelectionValue {
 	case 1:
@@ -12,8 +17,7 @@ func main() {
 		backToMain()
 	case 2:
 		showGenReportMenu()
-		userIntInput()
-
+		userSelectionValue = userInput.UserIntInput("\nChoose your report or exit to Main Menu: ")
 		switch userSelectionValue {
 		case 1:
 			totalCostCategory()
@@ -39,7 +43,10 @@ func main() {
 	case 7:
 		addNewCategory()
 		backToMain()
+	case 8:
+		break
+	default:
+		fmt.Println("Not a valid option!")
+		main()
 	}
-	
-
 }

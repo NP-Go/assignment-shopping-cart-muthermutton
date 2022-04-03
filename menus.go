@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	userInput "assignment-shopping-cart-muthermutton/userInput"
+)
 
 //printing and storing of different menus
 func showMainMenu() {
@@ -13,7 +16,7 @@ func showMainMenu() {
 	fmt.Println("5. Delete Item.")
 	fmt.Println("6. Print Current Data")
 	fmt.Println("7. Add New Category Name")
-	fmt.Printf("\nSelect your choice: ")
+	fmt.Println("8. Exit Program")
 }
 
 // iterates over the map and prints list in unordered
@@ -30,7 +33,6 @@ func showGenReportMenu() {
 	fmt.Println("1. Total Cost of each category")
 	fmt.Println("2. List of items by category")
 	fmt.Println("3. Main Menu")
-	fmt.Printf("\nChoose your report or exit to Main Menu: ")
 }
 
 func totalCostCategory() {
@@ -67,13 +69,12 @@ func addItemFeature() {
 	var newUnitCost float64
 	var invalidUserInput bool = true
 
-	fmt.Println("What is the name of your Item?")
-	newItemName = userStringInput()
+	newItemName = userInput.UserStringInput("What is the name of your Item?")
 
 	//user input validation check for valid category
 	for ok := true; ok; ok = invalidUserInput {
-		fmt.Println("What category does it belong to?")
-		newCategory = userStringInput()
+
+		newCategory = userInput.UserStringInput("What category does it belong to?")
 		for catId, category := range categories {
 			if newCategory == category {
 				invalidUserInput = false
@@ -85,11 +86,9 @@ func addItemFeature() {
 		}
 	}
 
-	fmt.Println("How many units are there?")
-	newQuantity = userIntInput()
+	newQuantity = userInput.UserIntInput("How many units are there?")
 
-	fmt.Println("How much does it cost per unit?")
-	newUnitCost = float64(userIntInput())
+	newUnitCost = float64(userInput.UserIntInput("How much does it cost per unit?"))
 
 	addNewItem(newItemName, itemInfo{category: newCategoryIndex, quantity: newQuantity, unitCost: newUnitCost})
 
@@ -106,30 +105,31 @@ func modifyItem() {
 	var itemToChange itemInfo
 
 	//user input validation check for valid category
-	for ok := true; ok; ok = invalidUserInput {
-		fmt.Println("\nWhich item would you wish to modify?")
-		x := userStringInput()
-		for itemName, itemInfo := range shoppingList {
-			if x == itemName {
-				itemToChange = itemInfo
-				originalItemName = itemName
-				fmt.Printf("\nCurrent Item Name: %v - Category: %v - Quantity: %v - Unit Cost %v\n", itemName, categories[itemInfo.category], itemInfo.quantity, itemInfo.unitCost)
-				invalidUserInput = false
-			}
-		}
-		if invalidUserInput {
+
+	for {
+		// fmt.Println("\nWhich item would you wish to modify?")
+		// userInput := userStringInput()
+		userInput := userInput.UserStringInput("\nWhich item would you wish to modify?")
+
+		mapValue, ok := shoppingList[userInput]
+
+		if ok {
+			itemToChange = mapValue
+			originalItemName = userInput
+			fmt.Printf("\nCurrent Item Name: %v - Category: %v - Quantity: %v - Unit Cost %v\n", userInput, categories[mapValue.category], mapValue.quantity, mapValue.unitCost)
+			break
+		} else {
 			println("No such Item in shopping list")
 		}
 	}
+
 	//collection of data to change
-	fmt.Println("Enter new Item Name. Enter for no change.")
-	newItemName = userStringInput()
+	newItemName = userInput.UserStringInput("Enter new Item Name. Enter for no change.")
 
 	//Used different type of Do while loop
 	invalidUserInput = true
 	for {
-		fmt.Println("Enter new Category. Enter for no change.")
-		newCategory = userStringInput()
+		newCategory = userInput.UserStringInput("Enter new Category. Enter for no change.")
 		for catId, category := range categories {
 			if newCategory == category {
 				newCategoryIndex = catId
@@ -139,14 +139,18 @@ func modifyItem() {
 		if !invalidUserInput {
 			break
 		}
-		fmt.Println("No such category!")
+		// fmt.Println("No such category! Add new category? (y/n)")
+		userReply := userInput.UserInputYN("No such category! Add new category?")
+		if userReply {
+			categories = append(categories, newCategory)
+			fmt.Println("New Category:", newCategory, "added at index", len(categories)-1)
+			break
+		}
 	}
 
-	fmt.Println("Enter new Quantiy. Enter for no change.")
-	newQuantity = userIntInput()
+	newQuantity = userInput.UserIntInput("Enter new Quantiy. Enter for no change.")
 
-	fmt.Println("Enter new Unit Cost. Enter for no change.")
-	newUnitCost = float64(userIntInput())
+	newUnitCost = float64(userInput.UserIntInput("Enter new Unit Cost. Enter for no change."))
 
 	if newCategory != "" {
 		itemToChange.category = newCategoryIndex
@@ -178,8 +182,8 @@ func modifyItem() {
 
 func deleteItem() {
 	for {
-		fmt.Println("Delete Item.\n")
-		itemNameDelete := userStringInput()
+		fmt.Println("\nDelete Item.")
+		itemNameDelete := userInput.UserStringInput("Enter item name to delete:")
 
 		_, exist := shoppingList[itemNameDelete]
 
@@ -206,8 +210,7 @@ func addNewCategory() {
 	fmt.Println("Add New Category Name.")
 	var categoryExists = false
 	for {
-		fmt.Println("What is the New Category Name to add?")
-		newCategory := userStringInput()
+		newCategory := userInput.UserStringInput("What is the New Category Name to add?")
 		for catId, category := range categories {
 			if newCategory == category {
 				fmt.Println("Category", category, "already exist at index", catId)
@@ -219,5 +222,15 @@ func addNewCategory() {
 			fmt.Println("New Category:", newCategory, "added at index", len(categories)-1)
 			break
 		}
+	}
+}
+
+func backToMain()  {
+	input := userInput.UserInputYN("Back to main menu?")
+
+	if input {
+		main()
+	}else {
+		backToMain()
 	}
 }

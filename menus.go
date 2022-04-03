@@ -104,7 +104,7 @@ func modifyItem() {
 	var newUnitCost float64
 	var invalidUserInput bool = true
 	var itemToChange itemInfo
-	
+
 	//user input validation check for valid category
 	for ok := true; ok; ok = invalidUserInput {
 		fmt.Println("\nWhich item would you wish to modify?")
@@ -125,15 +125,22 @@ func modifyItem() {
 	fmt.Println("Enter new Item Name. Enter for no change.")
 	newItemName = userStringInput()
 
-	
-	fmt.Println("Enter new Category. Enter for no change.")
-	newCategory = userStringInput()
-	for catId, category := range categories {
-		if newCategory == category{
-			newCategoryIndex = catId
-		}else {
-			fmt.Println()
+
+	//Used different type of Do while loop
+	invalidUserInput = true
+	for {
+		fmt.Println("Enter new Category. Enter for no change.")
+		newCategory = userStringInput()
+		for catId, category := range categories {
+			if newCategory == category {
+				newCategoryIndex = catId
+				invalidUserInput = false
+			}
 		}
+		if !invalidUserInput {
+			break
+		}
+		fmt.Println("No such category!")
 	}
 
 	fmt.Println("Enter new Quantiy. Enter for no change.")
@@ -144,19 +151,19 @@ func modifyItem() {
 
 	if newCategory != "" {
 		itemToChange.category = newCategoryIndex
-	}else {
+	} else {
 		fmt.Println("No changes made to Category.")
 	}
-	
+
 	if newQuantity != 0 {
 		itemToChange.quantity = newQuantity
-	}else {
+	} else {
 		fmt.Println("No changes made to quantity.")
 	}
 
 	if newUnitCost != 0 {
 		itemToChange.unitCost = newUnitCost
-	}else {
+	} else {
 		fmt.Println("No changes made to cost.")
 	}
 

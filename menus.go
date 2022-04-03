@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	userInput "assignment-shopping-cart-muthermutton/userInput"
+	"fmt"
 )
 
 //printing and storing of different menus
@@ -130,6 +130,9 @@ func modifyItem() {
 	invalidUserInput = true
 	for {
 		newCategory = userInput.UserStringInput("Enter new Category. Enter for no change.")
+		if newCategory == "" {
+			break
+		}
 		for catId, category := range categories {
 			if newCategory == category {
 				newCategoryIndex = catId
@@ -139,16 +142,16 @@ func modifyItem() {
 		if !invalidUserInput {
 			break
 		}
-		// fmt.Println("No such category! Add new category? (y/n)")
 		userReply := userInput.UserInputYN("No such category! Add new category?")
 		if userReply {
 			categories = append(categories, newCategory)
+			newCategoryIndex = len(categories) - 1
 			fmt.Println("New Category:", newCategory, "added at index", len(categories)-1)
 			break
 		}
 	}
 
-	newQuantity = userInput.UserIntInput("Enter new Quantiy. Enter for no change.")
+	newQuantity = userInput.UserIntInput("Enter new Quantity. Enter for no change.")
 
 	newUnitCost = float64(userInput.UserIntInput("Enter new Unit Cost. Enter for no change."))
 
@@ -225,12 +228,12 @@ func addNewCategory() {
 	}
 }
 
-func backToMain()  {
+func backToMain() {
 	input := userInput.UserInputYN("Back to main menu?")
 
 	if input {
 		main()
-	}else {
+	} else {
 		backToMain()
 	}
 }

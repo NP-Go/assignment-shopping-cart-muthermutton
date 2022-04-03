@@ -125,7 +125,6 @@ func modifyItem() {
 	fmt.Println("Enter new Item Name. Enter for no change.")
 	newItemName = userStringInput()
 
-
 	//Used different type of Do while loop
 	invalidUserInput = true
 	for {
@@ -176,3 +175,22 @@ func modifyItem() {
 
 	// fmt.Printf(shoppingList)
 }
+
+func deleteItem() {
+	for {
+		fmt.Println("Delete Item.")
+		itemNameDelete := userStringInput()
+
+		_, exist := shoppingList[itemNameDelete]
+
+		if exist{
+			delete(shoppingList, itemNameDelete)
+			fmt.Println("Item ", itemNameDelete, "has been deleted.")
+			break
+		} else {
+			fmt.Println("Item does not exist. Please enter valid item.")
+		}
+	}
+
+}
+

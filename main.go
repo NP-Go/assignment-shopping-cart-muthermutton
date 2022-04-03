@@ -28,8 +28,12 @@ func main() {
 		addItemFeature()
 		main()
 	case 4:
-	modifyItem()
-	backToMain()
+		modifyItem()
+		backToMain()
+	case 5:
+		deleteItem()
+		backToMain()
 	}
+	
 
 }

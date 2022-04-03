@@ -9,6 +9,10 @@ type itemInfo struct {
 var categories = []string{"Household", "Food", "Drinks"}
 var shoppingList = make(map[string]itemInfo)
 
+func addNewItem(key string, newItemInfo itemInfo) {
+	shoppingList[key] = newItemInfo
+}
+
 func init() {
 	shoppingList["Fork"] = itemInfo{category: 0, quantity: 4, unitCost: 3}
 	shoppingList["Plates"] = itemInfo{category: 0, quantity: 4, unitCost: 3}

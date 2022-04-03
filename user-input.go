@@ -9,7 +9,7 @@ import (
 var userSelection string
 var userSelectionValue int
 
-func userIntInput() int{
+func userIntInput() int {
 	fmt.Scanln(&userSelection)
 	userSelectionValue, _ = strconv.Atoi(userSelection)
 	return userSelectionValue
@@ -21,15 +21,16 @@ func backToMain() {
 
 	if userSelection == "y" {
 		main()
-	}else if userSelection == "n" {
+	} else if userSelection == "n" {
 		backToMain()
-	}else {
+	} else {
 		fmt.Println("Not a valid selection.")
 		backToMain()
 	}
 }
 
-func userStringInput() string{
+func userStringInput() string {
+	userSelection = ""
 	fmt.Scanln(&userSelection)
 	userSelectionCapital := strings.Title(strings.ToLower(userSelection))
 	return userSelectionCapital

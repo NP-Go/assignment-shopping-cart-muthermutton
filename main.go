@@ -9,7 +9,6 @@ func main() {
 
 	showMainMenu()
 	userSelectionValue := userInput.UserIntInput("\nselect your choice: ")
-	
 
 	switch userSelectionValue {
 	case 1:
@@ -44,6 +43,9 @@ func main() {
 		addNewCategory()
 		backToMain()
 	case 8:
+		modifyCategory()
+		backToMain()
+	case 9:
 		break
 	default:
 		fmt.Println("Not a valid option!")

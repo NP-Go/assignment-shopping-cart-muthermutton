@@ -5,6 +5,16 @@ import (
 	"fmt"
 )
 
+func backToMain() {
+	input := userInput.UserInputYN("Back to main menu?")
+
+	if input {
+		main()
+	} else {
+		backToMain()
+	}
+}
+
 //printing and storing of different menus
 func showMainMenu() {
 	fmt.Println("\nShopping List Application")
@@ -16,7 +26,8 @@ func showMainMenu() {
 	fmt.Println("5. Delete Item.")
 	fmt.Println("6. Print Current Data")
 	fmt.Println("7. Add New Category Name")
-	fmt.Println("8. Exit Program")
+	fmt.Println("8. Modify Category Name")
+	fmt.Println("9. Exit Program")
 }
 
 // iterates over the map and prints list in unordered
@@ -228,12 +239,28 @@ func addNewCategory() {
 	}
 }
 
-func backToMain() {
-	input := userInput.UserInputYN("Back to main menu?")
+func modifyCategory() {
+	var changeAtIndex int
+	var invalidUserInput = true
+	var originalCategory string
 
-	if input {
-		main()
-	} else {
-		backToMain()
+	for ok := true; ok; ok = invalidUserInput {
+		newCategory := userInput.UserStringInput("What category does it belong to?")
+		for catId, category := range categories {
+			if newCategory == category {
+				changeAtIndex = catId
+				originalCategory = category
+				invalidUserInput = false
+			}
+		}
+		if invalidUserInput {
+			userReply := userInput.UserInputYN("No valid category. Exit to Main Menu?")
+			if userReply {
+				main()
+			}
+		}
 	}
+	modifyTo := userInput.UserStringInput("New Category Name: ")
+	categories[changeAtIndex] = modifyTo
+	fmt.Println("\nYou changed Category Name", originalCategory, "to", modifyTo)
 }

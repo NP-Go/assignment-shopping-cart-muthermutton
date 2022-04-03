@@ -211,8 +211,8 @@ func printCurrentData() {
 func addNewCategory() {
 
 	fmt.Println("Add New Category Name.")
-	var categoryExists = false
 	for {
+		var categoryExists = false
 		newCategory := userInput.UserStringInput("What is the New Category Name to add?")
 		for catId, category := range categories {
 			if newCategory == category {

@@ -25,7 +25,7 @@ func main() {
 			main()
 		}
 	case 3:
-		addItem()
+		addItemFeature()
 		main()
 	case 4:
 	modifyItem()

@@ -59,7 +59,7 @@ func listByCategory() {
 	fmt.Println(" ")
 }
 
-func addItem() {
+func addItemFeature() {
 	var newItemName string
 	var newCategory string
 	var newCategoryIndex int
@@ -121,15 +121,18 @@ func modifyItem() {
 			println("No such Item in shopping list")
 		}
 	}
-
+	//collection of data to change
 	fmt.Println("Enter new Item Name. Enter for no change.")
 	newItemName = userStringInput()
 
+	
 	fmt.Println("Enter new Category. Enter for no change.")
 	newCategory = userStringInput()
 	for catId, category := range categories {
 		if newCategory == category{
 			newCategoryIndex = catId
+		}else {
+			fmt.Println()
 		}
 	}
 
